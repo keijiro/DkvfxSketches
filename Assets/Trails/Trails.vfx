@@ -279,7 +279,7 @@ VisualEffectResource:
       Turbulence_18D(attributes.position,  /*inout */attributes.velocity, attributes.mass,
       InvFieldTransform_a, FieldTransform_a, (float)0.25, (float)1, (float)6, (float)0.5,
       (float)2, (int)1, deltaTime_a);\n\t\t\t}\n\t\t\t{\n\t\t\t    Force_0( /*inout
-      */attributes.velocity, attributes.mass, float3(-0.300000012, 0, 0), deltaTime_a);\n\t\t\t}\n\t\t\tEulerIntegration(
+      */attributes.velocity, attributes.mass, float3(-0.400000006, 0, 0), deltaTime_a);\n\t\t\t}\n\t\t\tEulerIntegration(
       /*inout */attributes.position, attributes.velocity, deltaTime_a);\n\t\t\tAge(
       /*inout */attributes.age, deltaTime_a);\n\t\t\tReap(attributes.age, attributes.lifetime, 
       /*inout */attributes.alive);\n\t\t\t\n\r\n\r\n\t\t\tif (attributes.alive)\r\n\t\t\t{\r\n\t\t\t\tattributeBuffer.Store3((index
@@ -311,7 +311,7 @@ VisualEffectResource:
       Turbulence_18D(attributes.position,  /*inout */attributes.velocity, attributes.mass,
       InvFieldTransform_a, FieldTransform_a, (float)0.25, (float)1, (float)6, (float)0.5,
       (float)2, (int)1, deltaTime_a);\n\t\t}\n\t\t{\n\t\t    Force_0( /*inout */attributes.velocity,
-      attributes.mass, float3(-0.300000012, 0, 0), deltaTime_a);\n\t\t}\n\t\tEulerIntegration(
+      attributes.mass, float3(-0.400000006, 0, 0), deltaTime_a);\n\t\t}\n\t\tEulerIntegration(
       /*inout */attributes.position, attributes.velocity, deltaTime_a);\n\t\tAge(
       /*inout */attributes.age, deltaTime_a);\n\t\tReap(attributes.age, attributes.lifetime, 
       /*inout */attributes.alive);\n\t\t\n\r\n\t\tattributeBuffer.Store3((index *
@@ -1618,7 +1618,7 @@ VisualEffectResource:
         - m_ExpressionIndex: 26
           m_Value: {x: 10, y: 10, z: 10}
         - m_ExpressionIndex: 30
-          m_Value: {x: -0.3, y: 0, z: 0}
+          m_Value: {x: -0.4, y: 0, z: 0}
       m_Vector4f:
         m_Array:
         - m_ExpressionIndex: 1
@@ -7060,7 +7060,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEditor.VFX.Vector, Unity.VisualEffectGraph.Editor,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"vector":{"x":-0.30000001192092898,"y":0.0,"z":0.0}}'
+      m_SerializableObject: '{"vector":{"x":-0.4000000059604645,"y":0.0,"z":0.0}}'
     m_Space: 0
   m_Property:
     name: Force
