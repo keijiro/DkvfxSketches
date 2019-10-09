@@ -5005,8 +5005,8 @@ VisualEffectResource:
       attributeBuffer.Store((index * 0x6 + 0x3) << 2,asuint(attributes.angularVelocityY));\n           
       attributeBuffer.Store((index * 0x6 + 0x4) << 2,asuint(attributes.angularVelocityZ));\n           
       attributeBuffer.Store((index * 0x4 + 0xBB83) << 2,asuint(attributes.size));\n           
-      attributeBuffer.Store3((index * 0x4 + 0x13880) << 2,asuint(attributes.color));\n           
-      attributeBuffer.Store3((index * 0x4 + 0x1B580) << 2,asuint(attributes.position));\n           
+      attributeBuffer.Store3((index * 0x8 + 0x13880) << 2,asuint(attributes.color));\n           
+      attributeBuffer.Store3((index * 0x8 + 0x13884) << 2,asuint(attributes.position));\n           
       attributeBuffer.Store((index * 0x1 + 0x23280) << 2,asuint(attributes.particleId));\n           
       \n\r\n        }\r\n    }\r\n}\r\n"
   - compute: 1
@@ -5060,8 +5060,8 @@ VisualEffectResource:
       * 0x6 + 0x3) << 2));\n\t\t\tattributes.angularVelocityZ = asfloat(attributeBuffer.Load((index
       * 0x6 + 0x4) << 2));\n\t\t\tattributes.size = asfloat(attributeBuffer.Load((index
       * 0x4 + 0xBB83) << 2));\n\t\t\tattributes.color = asfloat(attributeBuffer.Load3((index
-      * 0x4 + 0x13880) << 2));\n\t\t\tattributes.position = asfloat(attributeBuffer.Load3((index
-      * 0x4 + 0x1B580) << 2));\n\t\t\tattributes.particleId = (attributeBuffer.Load((index
+      * 0x8 + 0x13880) << 2));\n\t\t\tattributes.position = asfloat(attributeBuffer.Load3((index
+      * 0x8 + 0x13884) << 2));\n\t\t\tattributes.particleId = (attributeBuffer.Load((index
       * 0x1 + 0x23280) << 2));\n\t\t\t\n\r\n\r\n// Initialize built-in needed attributes\r\n#if
       VFX_USE_OLDPOSITION_CURRENT\r\n\t\t\tattributes.oldPosition = attributes.position;\r\n#endif\r\n#if
       HAS_STRIPS\r\n            const StripData stripData = GetStripDataFromParticleIndex(index,
@@ -5094,8 +5094,8 @@ VisualEffectResource:
       * 0x4 + 0xBB81) << 2,asuint(attributes.angleY));\n\t\t\t\tattributeBuffer.Store((index
       * 0x4 + 0xBB82) << 2,asuint(attributes.angleZ));\n\t\t\t\tattributeBuffer.Store((index
       * 0x4 + 0xBB83) << 2,asuint(attributes.size));\n\t\t\t\tattributeBuffer.Store3((index
-      * 0x4 + 0x13880) << 2,asuint(attributes.color));\n\t\t\t\tattributeBuffer.Store3((index
-      * 0x4 + 0x1B580) << 2,asuint(attributes.position));\n\t\t\t\t\n\r\n#if VFX_HAS_INDIRECT_DRAW\r\n               
+      * 0x8 + 0x13880) << 2,asuint(attributes.color));\n\t\t\t\tattributeBuffer.Store3((index
+      * 0x8 + 0x13884) << 2,asuint(attributes.position));\n\t\t\t\t\n\r\n#if VFX_HAS_INDIRECT_DRAW\r\n               
       uint indirectIndex = indirectBuffer.IncrementCounter();\r\n\t\t\t\tindirectBuffer[indirectIndex]
       = index;\r\n#endif\r\n\r\n#if HAS_STRIPS\t\t\t\r\n\t\t\t\tuint relativeIndexInStrip
       = GetRelativeIndex(index, stripData);\r\n\t\t\t\tInterlockedMin(STRIP_DATA(STRIP_MIN_ALIVE,
@@ -5116,8 +5116,8 @@ VisualEffectResource:
       = asfloat(attributeBuffer.Load((index * 0x6 + 0x3) << 2));\n\t\tattributes.angularVelocityZ
       = asfloat(attributeBuffer.Load((index * 0x6 + 0x4) << 2));\n\t\tattributes.size
       = asfloat(attributeBuffer.Load((index * 0x4 + 0xBB83) << 2));\n\t\tattributes.color
-      = asfloat(attributeBuffer.Load3((index * 0x4 + 0x13880) << 2));\n\t\tattributes.position
-      = asfloat(attributeBuffer.Load3((index * 0x4 + 0x1B580) << 2));\n\t\tattributes.particleId
+      = asfloat(attributeBuffer.Load3((index * 0x8 + 0x13880) << 2));\n\t\tattributes.position
+      = asfloat(attributeBuffer.Load3((index * 0x8 + 0x13884) << 2));\n\t\tattributes.particleId
       = (attributeBuffer.Load((index * 0x1 + 0x23280) << 2));\n\t\t\n\r\n\t\t\r\n#if
       VFX_USE_OLDPOSITION_CURRENT\r\n\t\tattributes.oldPosition = attributes.position;\r\n#endif\r\n#if
       HAS_STRIPS\r\n        const StripData stripData = GetStripDataFromParticleIndex(index,
@@ -5150,8 +5150,8 @@ VisualEffectResource:
       << 2,asuint(attributes.angleY));\n\t\tattributeBuffer.Store((index * 0x4 +
       0xBB82) << 2,asuint(attributes.angleZ));\n\t\tattributeBuffer.Store((index
       * 0x4 + 0xBB83) << 2,asuint(attributes.size));\n\t\tattributeBuffer.Store3((index
-      * 0x4 + 0x13880) << 2,asuint(attributes.color));\n\t\tattributeBuffer.Store3((index
-      * 0x4 + 0x1B580) << 2,asuint(attributes.position));\n\t\t\n\r\n#if VFX_HAS_INDIRECT_DRAW\r\n       
+      * 0x8 + 0x13880) << 2,asuint(attributes.color));\n\t\tattributeBuffer.Store3((index
+      * 0x8 + 0x13884) << 2,asuint(attributes.position));\n\t\t\n\r\n#if VFX_HAS_INDIRECT_DRAW\r\n       
       uint indirectIndex = indirectBuffer.IncrementCounter();\r\n\t\tindirectBuffer[indirectIndex]
       = index;\r\n#endif\r\n#endif\r\n\t}\r\n}\r\n"
   - compute: 0
@@ -5171,13 +5171,13 @@ VisualEffectResource:
       1\n\t\t#define VFX_USE_PIVOTY_CURRENT 1\n\t\t#define VFX_USE_PIVOTZ_CURRENT
       1\n\t\t#define VFX_USE_SCALEX_CURRENT 1\n\t\t#define VFX_USE_SCALEY_CURRENT
       1\n\t\t#define VFX_USE_SCALEZ_CURRENT 1\n\t\t#define VFX_COLORMAPPING_DEFAULT
-      1\n\t\t#define IS_OPAQUE_PARTICLE 1\n\t\t#define USE_MOTION_VECTORS_PASS 1\n\t\t#define
-      USE_CAST_SHADOWS_PASS 1\n\t\t#define HDRP_LIT 1\n\t\t#define HDRP_MATERIAL_TYPE_STANDARD
-      1\n\t\t#define HDRP_USE_BASE_COLOR 1\n\t\t#define HDRP_USE_ADDITIONAL_EMISSIVE_COLOR
-      1\n\t\t#define USE_DOUBLE_SIDED 1\n\t\t#define IS_OPAQUE_NOT_SIMPLE_LIT_PARTICLE
-      1\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t#define VFX_LOCAL_SPACE 1\n\t\t#include \"Packages/com.unity.render-pipelines.high-definition/Runtime/VFXGraph/Shaders/VFXDefines.hlsl\"\n\t\t\n\n\t\tCBUFFER_START(parameters)\n\t\t   
+      1\n\t\t#define IS_OPAQUE_PARTICLE 1\n\t\t#define USE_CAST_SHADOWS_PASS 1\n\t\t#define
+      HDRP_LIT 1\n\t\t#define HDRP_MATERIAL_TYPE_STANDARD 1\n\t\t#define HDRP_USE_BASE_COLOR
+      1\n\t\t#define HDRP_USE_ADDITIONAL_EMISSIVE_COLOR 1\n\t\t#define USE_DOUBLE_SIDED
+      1\n\t\t#define IS_OPAQUE_NOT_SIMPLE_LIT_PARTICLE 1\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t#define
+      VFX_LOCAL_SPACE 1\n\t\t#include \"Packages/com.unity.render-pipelines.high-definition/Runtime/VFXGraph/Shaders/VFXDefines.hlsl\"\n\t\t\n\n\t\tCBUFFER_START(parameters)\n\t\t   
       float uniform_b;\n\t\t    float uniform_c;\n\t\t    float uniform_d;\n\t\t   
-      float currentFrameIndex;\n\t\tCBUFFER_END\n\t\t\n\t\tstruct Attributes\n\t\t{\n\t\t   
+      uint PADDING_0;\n\t\tCBUFFER_END\n\t\t\n\t\tstruct Attributes\n\t\t{\n\t\t   
       float angleX;\n\t\t    float angleY;\n\t\t    float angleZ;\n\t\t    float
       size;\n\t\t    float3 color;\n\t\t    float3 position;\n\t\t    uint particleId;\n\t\t   
       float alpha;\n\t\t    bool alive;\n\t\t    float3 axisX;\n\t\t    float3 axisY;\n\t\t   
@@ -5248,8 +5248,8 @@ VisualEffectResource:
       * 0x4 + 0xBB81) << 2));\n\t\t\t\t\t\tattributes.angleZ = asfloat(attributeBuffer.Load((index
       * 0x4 + 0xBB82) << 2));\n\t\t\t\t\t\tattributes.size = asfloat(attributeBuffer.Load((index
       * 0x4 + 0xBB83) << 2));\n\t\t\t\t\t\tattributes.color = asfloat(attributeBuffer.Load3((index
-      * 0x4 + 0x13880) << 2));\n\t\t\t\t\t\tattributes.position = asfloat(attributeBuffer.Load3((index
-      * 0x4 + 0x1B580) << 2));\n\t\t\t\t\t\tattributes.particleId = (attributeBuffer.Load((index
+      * 0x8 + 0x13880) << 2));\n\t\t\t\t\t\tattributes.position = asfloat(attributeBuffer.Load3((index
+      * 0x8 + 0x13884) << 2));\n\t\t\t\t\t\tattributes.particleId = (attributeBuffer.Load((index
       * 0x1 + 0x23280) << 2));\n\t\t\t\t\t\tattributes.alpha = (float)1;\n\t\t\t\t\t\tattributes.alive
       = (bool)true;\n\t\t\t\t\t\tattributes.axisX = float3(1, 0, 0);\n\t\t\t\t\t\tattributes.axisY
       = float3(0, 1, 0);\n\t\t\t\t\t\tattributes.axisZ = float3(0, 0, 1);\n\t\t\t\t\t\tattributes.pivotX
@@ -5262,8 +5262,8 @@ VisualEffectResource:
       = asfloat(attributeBuffer.Load((index * 0x4 + 0xBB81) << 2));\n\t\t\t\t\t\tattributes.angleZ
       = asfloat(attributeBuffer.Load((index * 0x4 + 0xBB82) << 2));\n\t\t\t\t\t\tattributes.size
       = asfloat(attributeBuffer.Load((index * 0x4 + 0xBB83) << 2));\n\t\t\t\t\t\tattributes.color
-      = asfloat(attributeBuffer.Load3((index * 0x4 + 0x13880) << 2));\n\t\t\t\t\t\tattributes.position
-      = asfloat(attributeBuffer.Load3((index * 0x4 + 0x1B580) << 2));\n\t\t\t\t\t\tattributes.particleId
+      = asfloat(attributeBuffer.Load3((index * 0x8 + 0x13880) << 2));\n\t\t\t\t\t\tattributes.position
+      = asfloat(attributeBuffer.Load3((index * 0x8 + 0x13884) << 2));\n\t\t\t\t\t\tattributes.particleId
       = (attributeBuffer.Load((index * 0x1 + 0x23280) << 2));\n\t\t\t\t\t\tattributes.alpha
       = (float)1;\n\t\t\t\t\t\tattributes.axisX = float3(1, 0, 0);\n\t\t\t\t\t\tattributes.axisY
       = float3(0, 1, 0);\n\t\t\t\t\t\tattributes.axisZ = float3(0, 0, 1);\n\t\t\t\t\t\tattributes.pivotX
@@ -5378,192 +5378,7 @@ VisualEffectResource:
       0.5f, encodedMotionVector);\n\t\t\t\t\t\t\t\n\t\t\t\t\toutMotionVector = encodedMotionVector;\n\t\t\t\t#endif\n\t\t\t\n\t\t\t\t#if
       SCENESELECTIONPASS\n\t\t\t\t\t// We use depth prepass for scene selection in
       the editor, this code allow to output the outline correctly\n\t\t\t\t\toutColor
-      = float4(_ObjectId, _PassValue, 1.0, 1.0);\n\t\t\t\t#endif\n\t\t\t}\n\t\t\n\t\t\n\t\t\n\t\t\tENDHLSL\n\t\t}\n\t\t\n\r\n\t\tPass\n\t\t{\t\t\n\t\t\tTags
-      { \"LightMode\"=\"MotionVectors\" }\n\t\t\t\n\t\t\tStencil\n\t\t\t{\n\t\t\t
-      WriteMask 176\n\t\t\t Ref 160\n\t\t\t Comp Always\n\t\t\t Pass Replace\n\t\t\t}\n\n\t\t\n\t\t\tZWrite
-      On\n\t\t\tBlend Off\n\t\t\t\n\t\t\tHLSLPROGRAM\n\t\t\t#define IS_MOTION_VECTORS_PASS
-      1\n\t\t\t\n\t\t\t#pragma target 4.5\n\t\t\t#define UNITY_MATERIAL_LIT\n\t\t\t#pragma
-      multi_compile _ WRITE_NORMAL_BUFFER\n\t\t\t\n\t\t\tstruct ps_input\n\t\t\t{\t\t\n\t\t\t\tfloat4
-      pos : SV_POSITION;\n\t\t\t\tfloat2 uv : TEXCOORD0;\t\n\t\t\t    #if VFX_SHADERGRAPH_HAS_UV1\n\t\t\t   
-      float4 uv1 : COLOR2;\n\t\t\t    #endif\n\t\t\t    #if VFX_SHADERGRAPH_HAS_UV2\n\t\t\t   
-      float4 uv2 : COLOR3;\n\t\t\t    #endif\n\t\t\t    #if VFX_SHADERGRAPH_HAS_UV3\n\t\t\t   
-      float4 uv3 : COLOR4;\n\t\t\t    #endif\n\t\t\t    #if VFX_SHADERGRAPH_HAS_COLOR\n\t\t\t   
-      float4 vertexColor : COLOR1;\n\t\t\t    #endif\n\t\t\t\t#if USE_ALPHA_TEST
-      || USE_FLIPBOOK_INTERPOLATION || VFX_USE_ALPHA_CURRENT\n\t\t\t\t// x: alpha
-      threshold\n\t\t\t\t// y: frame blending factor\n\t\t\t\t// z: alpha\n\t\t\t\t//
-      w: smoothness\n\t\t\t\tnointerpolation float4 builtInInterpolants : TEXCOORD1;\n\t\t\t\t#endif\n\t\t\t\t#if
-      USE_FLIPBOOK_MOTIONVECTORS\n\t\t\t\t// x: motion vector scale u\n\t\t\t\t//
-      y: motion vector scale v\n\t\t\t\tnointerpolation float2 builtInInterpolants2
-      : TEXCOORD3;\n\t\t\t\t#endif\n\t\t\t\t#ifdef WRITE_NORMAL_BUFFER\n\t\t\t\tfloat4
-      normal : TEXCOORD4; // normal scale is stored in w\n\t\t\t\t#if HDRP_USE_NORMAL_MAP
-      || SHADERGRAPH_HAS_NORMAL\n\t\t\t\tfloat4 tangent : TEXCOORD5;\n\t\t\t\t#endif\n\t\t\t\t#endif\n\t\t\t\t\n\t\t\t\t#if
-      IS_MOTION_VECTORS_PASS\n\t\t\t\tfloat4 cPosPrevious : TEXCOORD6;\n\t\t\t\tfloat4
-      cPosNonJiterred : TEXCOORD7;\n\t\t\t\t#endif\n\t\t\t    \n\t\t\t\t\n\t\t\t\tUNITY_VERTEX_OUTPUT_STEREO\n\t\t\t};\n\t\t\t\n\t\t\t#define
-      VFX_VARYING_PS_INPUTS ps_input\n\t\t\t#define VFX_VARYING_POSCS pos\n\t\t\t#define
-      VFX_VARYING_ALPHA builtInInterpolants.z\n\t\t\t#define VFX_VARYING_ALPHATHRESHOLD
-      builtInInterpolants.x\n\t\t\t#define VFX_VARYING_FRAMEBLEND builtInInterpolants.y\n\t\t\t#define
-      VFX_VARYING_MOTIONVECTORSCALE builtInInterpolants2.xy\n\t\t\t#define VFX_VARYING_UV
-      uv\n\t\t\t\n\t\t\t#if IS_MOTION_VECTORS_PASS\n\t\t\t#define VFX_VARYING_VELOCITY_CPOS
-      cPosNonJiterred\n\t\t\t#define VFX_VARYING_VELOCITY_CPOS_PREVIOUS cPosPrevious\n\t\t\t#endif\n\t\t\t\n\t\t\t#ifdef
-      WRITE_NORMAL_BUFFER\n\t\t\t#define VFX_VARYING_NORMAL normal.xyz\n\t\t\t#define
-      VFX_VARYING_SMOOTHNESS builtInInterpolants.w\n\t\t\t#if HDRP_USE_NORMAL_MAP
-      || SHADERGRAPH_HAS_NORMAL\n\t\t\t#define VFX_VARYING_TANGENT tangent\n\t\t\t#define
-      VFX_VARYING_NORMALSCALE normal.w\n\t\t\t#endif\n\t\t\t#endif\n\t\t\t\t\t\n\t\t\t\n\t\t\t\t\t\n\t\t\t#if
-      !(defined(VFX_VARYING_PS_INPUTS) && defined(VFX_VARYING_POSCS))\n\t\t\t#error
-      VFX_VARYING_PS_INPUTS, VFX_VARYING_POSCS and VFX_VARYING_UV must be defined.\n\t\t\t#endif\n\t\t\t\n\t\t\t#include
-      \"Packages/com.unity.render-pipelines.high-definition/Runtime/VFXGraph/Shaders/VFXCommon.hlsl\"\n\t\t\t#include
-      \"Packages/com.unity.visualeffectgraph/Shaders/VFXCommon.hlsl\"\n\t\t\t\n\n\t\t\t\n\t\t\t\n\t\t\tstruct
-      vs_input\n\t\t\t{\n\t\t\t\tfloat3 pos : POSITION;\n\t\t\t\tfloat2 uv : TEXCOORD0;\n\t\t\t   
-      #if VFX_SHADERGRAPH_HAS_UV1\n\t\t\t    float4 uv1 : TEXCOORD1;\n\t\t\t    #endif\n\t\t\t   
-      #if VFX_SHADERGRAPH_HAS_UV2\n\t\t\t    float4 uv2 : TEXCOORD2;\n\t\t\t    #endif\n\t\t\t   
-      #if VFX_SHADERGRAPH_HAS_UV3\n\t\t\t    float4 uv3 : TEXCOORD3;\n\t\t\t    #endif\n\t\t\t   
-      #if VFX_SHADERGRAPH_HAS_COLOR\n\t\t\t    float4 vertexColor : COLOR;\n\t\t\t   
-      #endif\n\t\t\t\tfloat3 normal : NORMAL;\n\t\t\t\t#if defined(VFX_VARYING_TANGENT)
-      || SHADERGRAPH_HAS_NORMAL\n\t\t\t\tfloat4 tangent : TANGENT;\n\t\t\t\t#endif\n\t\t\t\tVFX_DECLARE_INSTANCE_ID\n\t\t\t};\n\t\t\t\n\t\t\t#pragma
-      vertex vert\n\t\t\tVFX_VARYING_PS_INPUTS vert(vs_input i)\n\t\t\t{\n\t\t\t   
-      VFX_VARYING_PS_INPUTS o = (VFX_VARYING_PS_INPUTS)0;\n\t\t\t\n\t\t\t\tUNITY_SETUP_INSTANCE_ID(i);\n\t\t\t\tUNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);\n\t\t\t\n\t\t\t\tuint
-      index = VFX_GET_INSTANCE_ID(i);\t\n\t\t\t\n\t\t\t\t\n\t\t\t\t\t\tuint deadCount
-      = 0;\n\t\t\t\t\t\t#if USE_DEAD_LIST_COUNT\n\t\t\t\t\t\tdeadCount = deadListCount.Load(0);\n\t\t\t\t\t\t#endif\t\n\t\t\t\t\t\tif
-      (index >= asuint(nbMax) - deadCount)\n\t\t\t\t\t\t#if USE_GEOMETRY_SHADER\n\t\t\t\t\t\t\treturn;
-      // cull\n\t\t\t\t\t\t#else\n\t\t\t\t\t\t\treturn o; // cull\n\t\t\t\t\t\t#endif\n\t\t\t\t\t\t\n\t\t\t\t\t\tAttributes
-      attributes = (Attributes)0;\n\t\t\t\t\t\tSourceAttributes sourceAttributes
-      = (SourceAttributes)0;\n\t\t\t\t\t\t\n\t\t\t\t\t\t#if VFX_HAS_INDIRECT_DRAW\n\t\t\t\t\t\tindex
-      = indirectBuffer[index];\n\t\t\t\t\t\tattributes.angleX = asfloat(attributeBuffer.Load((index
-      * 0x4 + 0xBB80) << 2));\n\t\t\t\t\t\tattributes.angleY = asfloat(attributeBuffer.Load((index
-      * 0x4 + 0xBB81) << 2));\n\t\t\t\t\t\tattributes.angleZ = asfloat(attributeBuffer.Load((index
-      * 0x4 + 0xBB82) << 2));\n\t\t\t\t\t\tattributes.size = asfloat(attributeBuffer.Load((index
-      * 0x4 + 0xBB83) << 2));\n\t\t\t\t\t\tattributes.color = asfloat(attributeBuffer.Load3((index
-      * 0x4 + 0x13880) << 2));\n\t\t\t\t\t\tattributes.position = asfloat(attributeBuffer.Load3((index
-      * 0x4 + 0x1B580) << 2));\n\t\t\t\t\t\tattributes.particleId = (attributeBuffer.Load((index
-      * 0x1 + 0x23280) << 2));\n\t\t\t\t\t\tattributes.alpha = (float)1;\n\t\t\t\t\t\tattributes.alive
-      = (bool)true;\n\t\t\t\t\t\tattributes.axisX = float3(1, 0, 0);\n\t\t\t\t\t\tattributes.axisY
-      = float3(0, 1, 0);\n\t\t\t\t\t\tattributes.axisZ = float3(0, 0, 1);\n\t\t\t\t\t\tattributes.pivotX
-      = (float)0;\n\t\t\t\t\t\tattributes.pivotY = (float)0;\n\t\t\t\t\t\tattributes.pivotZ
-      = (float)0;\n\t\t\t\t\t\tattributes.scaleX = (float)1;\n\t\t\t\t\t\tattributes.scaleY
-      = (float)1;\n\t\t\t\t\t\tattributes.scaleZ = (float)1;\n\t\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\t#else\n\t\t\t\t\t\tattributes.alive
-      = (bool)true;\n\t\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\t#if !HAS_STRIPS\n\t\t\t\t\t\tif
-      (!attributes.alive)\n\t\t\t\t\t\t\treturn o;\n\t\t\t\t\t\t#endif\n\t\t\t\t\t\t\t\n\t\t\t\t\t\tattributes.angleX
-      = asfloat(attributeBuffer.Load((index * 0x4 + 0xBB80) << 2));\n\t\t\t\t\t\tattributes.angleY
-      = asfloat(attributeBuffer.Load((index * 0x4 + 0xBB81) << 2));\n\t\t\t\t\t\tattributes.angleZ
-      = asfloat(attributeBuffer.Load((index * 0x4 + 0xBB82) << 2));\n\t\t\t\t\t\tattributes.size
-      = asfloat(attributeBuffer.Load((index * 0x4 + 0xBB83) << 2));\n\t\t\t\t\t\tattributes.color
-      = asfloat(attributeBuffer.Load3((index * 0x4 + 0x13880) << 2));\n\t\t\t\t\t\tattributes.position
-      = asfloat(attributeBuffer.Load3((index * 0x4 + 0x1B580) << 2));\n\t\t\t\t\t\tattributes.particleId
-      = (attributeBuffer.Load((index * 0x1 + 0x23280) << 2));\n\t\t\t\t\t\tattributes.alpha
-      = (float)1;\n\t\t\t\t\t\tattributes.axisX = float3(1, 0, 0);\n\t\t\t\t\t\tattributes.axisY
-      = float3(0, 1, 0);\n\t\t\t\t\t\tattributes.axisZ = float3(0, 0, 1);\n\t\t\t\t\t\tattributes.pivotX
-      = (float)0;\n\t\t\t\t\t\tattributes.pivotY = (float)0;\n\t\t\t\t\t\tattributes.pivotZ
-      = (float)0;\n\t\t\t\t\t\tattributes.scaleX = (float)1;\n\t\t\t\t\t\tattributes.scaleY
-      = (float)1;\n\t\t\t\t\t\tattributes.scaleZ = (float)1;\n\t\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\t#endif\n\t\t\t\t\t\t\n\t\t\t\t\t\t//
-      Initialize built-in needed attributes\n\t\t\t\t\t\t#if HAS_STRIPS\n\t\t\t\t\t\tInitStripAttributes(index,
-      attributes, stripData);\n\t\t\t\t\t\t#endif\n\t\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\t\n\t\t\t\tif
-      (!attributes.alive)\n\t\t\t\t\treturn o;\n\t\t\t\t\n\t\t\t\to.VFX_VARYING_UV.xy
-      = i.uv;\n\t\t\t    \n\t\t\t    #if VFX_SHADERGRAPH_HAS_UV1\n\t\t\t    o.uv1
-      = i.uv1;\n\t\t\t    #endif\n\t\t\t    #if VFX_SHADERGRAPH_HAS_UV2\n\t\t\t   
-      o.uv2 = i.uv2;\n\t\t\t    #endif\n\t\t\t    #if VFX_SHADERGRAPH_HAS_UV3\n\t\t\t   
-      o.uv3 = i.uv3;\n\t\t\t    #endif\n\t\t\t    #if VFX_SHADERGRAPH_HAS_COLOR\n\t\t\t   
-      o.vertexColor = i.vertexColor;\n\t\t\t    #endif\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\tfloat3
-      size3 = float3(attributes.size,attributes.size,attributes.size);\n\t\t\t\t\t\t#if
-      VFX_USE_SCALEX_CURRENT\n\t\t\t\t\t\tsize3.x *= attributes.scaleX;\n\t\t\t\t\t\t#endif\n\t\t\t\t\t\t#if
-      VFX_USE_SCALEY_CURRENT\n\t\t\t\t\t\tsize3.y *= attributes.scaleY;\n\t\t\t\t\t\t#endif\n\t\t\t\t\t\t#if
-      VFX_USE_SCALEZ_CURRENT\n\t\t\t\t\t\tsize3.z *= attributes.scaleZ;\n\t\t\t\t\t\t#endif\n\t\t\t\t\t\t\n\t\t\t\t\n\t\t\t\tfloat3
-      inputVertexPosition = i.pos;\n\t\t\t\tfloat4x4 elementToVFX = GetElementToVFXMatrix(\n\t\t\t\t\tattributes.axisX,\n\t\t\t\t\tattributes.axisY,\n\t\t\t\t\tattributes.axisZ,\n\t\t\t\t\tfloat3(attributes.angleX,attributes.angleY,attributes.angleZ),\n\t\t\t\t\tfloat3(attributes.pivotX,attributes.pivotY,attributes.pivotZ),\n\t\t\t\t\tsize3,\n\t\t\t\t\tattributes.position);\n\t\t\t\t\t\n\t\t\t\tfloat3
-      vPos = mul(elementToVFX,float4(inputVertexPosition,1.0f)).xyz;\n\t\t\t\tfloat4
-      csPos = TransformPositionVFXToClip(vPos);\n\t\t\t\to.VFX_VARYING_POSCS = csPos;\n\t\t\t\t\n\t\t\t\tfloat3
-      normalWS = normalize(TransformDirectionVFXToWorld(mul((float3x3)elementToVFX,
-      i.normal)));\n\t\t\t\t#ifdef VFX_VARYING_NORMAL // TODO Should use inverse
-      transpose\n\t\t\t\to.VFX_VARYING_NORMAL = normalWS;\n\t\t\t\t#endif\n\t\t\t\t#ifdef
-      VFX_VARYING_TANGENT\n\t\t\t\to.VFX_VARYING_TANGENT = float4(normalize(TransformDirectionVFXToWorld(mul((float3x3)elementToVFX,i.tangent.xyz))),i.tangent.w);\n\t\t\t\t#endif\n\t\t\t\n\t\t\t\t\n\t\t\t\t\t\t#if
-      defined(VFX_VARYING_VELOCITY_CPOS) && defined(VFX_VARYING_VELOCITY_CPOS_PREVIOUS)\n\t\t\t\t\t\tfloat4x4
-      previousElementToVFX = (float4x4)0;\n\t\t\t\t\t\tpreviousElementToVFX[3] =
-      float4(0,0,0,1);\n\t\t\t\t\t\t\n\t\t\t\t\t\tUNITY_UNROLL\n\t\t\t\t\t\tfor (int
-      itIndexMatrixRow = 0; itIndexMatrixRow < 3; ++itIndexMatrixRow)\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\tUNITY_UNROLL\n\t\t\t\t\t\t\tfor
-      (int itIndexMatrixCol = 0; itIndexMatrixCol < 4; ++itIndexMatrixCol)\n\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\tuint
-      itIndexMatrix = itIndexMatrixCol * 4 + itIndexMatrixRow;\n\t\t\t\t\t\t\t\tuint
-      read = elementToVFXBufferPrevious.Load((index * 16 + itIndexMatrix) << 2);\n\t\t\t\t\t\t\t\tpreviousElementToVFX[itIndexMatrixRow][itIndexMatrixCol]
-      = asfloat(read);\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t\t\n\t\t\t\t\t\tuint
-      previousFrameIndex = elementToVFXBufferPrevious.Load((index * 16 + 15) << 2);\n\t\t\t\t\t\to.VFX_VARYING_VELOCITY_CPOS
-      = o.VFX_VARYING_VELOCITY_CPOS_PREVIOUS = float4(0.0f, 0.0f, 0.0f, 1.0f);\n\t\t\t\t\t\tif
-      (asuint(currentFrameIndex) - previousFrameIndex == 1u)\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\tfloat3
-      oldvPos = mul(previousElementToVFX,float4(inputVertexPosition, 1.0f)).xyz;\n\t\t\t\t\t\t\to.VFX_VARYING_VELOCITY_CPOS_PREVIOUS
-      = TransformPositionVFXToPreviousClip(oldvPos);\n\t\t\t\t\t\t\to.VFX_VARYING_VELOCITY_CPOS
-      = TransformPositionVFXToNonJitteredClip(vPos);\n\t\t\t\t\t\t}\n\t\t\t\t\t\t#endif\n\t\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\t#if
-      VFX_USE_COLOR_CURRENT && defined(VFX_VARYING_COLOR)\n\t\t\t\t\t\to.VFX_VARYING_COLOR
-      = attributes.color;\n\t\t\t\t\t\t#endif\n\t\t\t\t\t\t#if VFX_USE_ALPHA_CURRENT
-      && defined(VFX_VARYING_ALPHA) \n\t\t\t\t\t\to.VFX_VARYING_ALPHA = attributes.alpha;\n\t\t\t\t\t\t#endif\n\t\t\t\t\t\t\n\t\t\t\t\t\t#ifdef
-      VFX_VARYING_EXPOSUREWEIGHT\n\t\t\t\t\t\t\n\t\t\t\t\t\to.VFX_VARYING_EXPOSUREWEIGHT
-      = exposureWeight;\n\t\t\t\t\t\t#endif\n\t\t\t\t\t\t\n\t\t\t\t\t\t#if USE_SOFT_PARTICLE
-      && defined(VFX_VARYING_INVSOFTPARTICLEFADEDISTANCE)\n\t\t\t\t\t\t\n\t\t\t\t\t\to.VFX_VARYING_INVSOFTPARTICLEFADEDISTANCE
-      = invSoftParticlesFadeDistance;\n\t\t\t\t\t\t#endif\n\t\t\t\t\t\t\n\t\t\t\t\t\t#if
-      USE_ALPHA_TEST && defined(VFX_VARYING_ALPHATHRESHOLD) && ! VFX_SHADERGRAPH\n\t\t\t\t\t\t\n\t\t\t\t\t\to.VFX_VARYING_ALPHATHRESHOLD
-      = alphaThreshold;\n\t\t\t\t\t\t#endif\n\t\t\t\t\t\t\n\t\t\t\t\t\t#if USE_UV_SCALE_BIAS\n\t\t\t\t\t\t\n\t\t\t\t\t\t\n\t\t\t\t\t\t#if
-      defined (VFX_VARYING_UV)\n\t\t\t\t\t\to.VFX_VARYING_UV.xy = o.VFX_VARYING_UV.xy
-      * uvScale + uvBias;\n\t\t\t\t\t\t#endif\n\t\t\t\t\t\t#endif\n\t\t\t\t\t\t\n\t\t\t\t\t\t#if
-      defined(VFX_VARYING_POSWS)\n\t\t\t\t\t\to.VFX_VARYING_POSWS = TransformPositionVFXToWorld(vPos);\n\t\t\t\t\t\t#endif\n\t\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\t#if
-      USE_FLIPBOOK && defined(VFX_VARYING_UV)\n\t\t\t\t\t\t\n\t\t\t\t\t\t\n\t\t\t\t\t\tVFXUVData
-      uvData = GetUVData(flipBookSize, invFlipBookSize, o.VFX_VARYING_UV.xy, attributes.texIndex);\n\t\t\t\t\t\to.VFX_VARYING_UV.xy
-      = uvData.uvs.xy;\n\t\t\t\t\t\t#if USE_FLIPBOOK_INTERPOLATION && defined(VFX_VARYING_UV)
-      && defined (VFX_VARYING_FRAMEBLEND)\n\t\t\t\t\t\to.VFX_VARYING_UV.zw = uvData.uvs.zw;\n\t\t\t\t\t\to.VFX_VARYING_FRAMEBLEND
-      = uvData.blend;\n\t\t\t\t\t\t#if USE_FLIPBOOK_MOTIONVECTORS && defined(VFX_VARYING_MOTIONVECTORSCALE)\n\t\t\t\t\t\t\n\t\t\t\t\t\to.VFX_VARYING_MOTIONVECTORSCALE
-      = motionVectorScale * invFlipBookSize;\n\t\t\t\t\t\t#endif\n\t\t\t\t\t\t#endif\n\t\t\t\t\t\t#endif\n\t\t\t\t\t\t\n\t\t\t\n\t\t\t\t\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\n\t\t\t   
-      \n\t\t\t    \n\t\t\t\t\n\t\t\t\treturn o;\n\t\t\t}\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t#include
-      \"Packages/com.unity.visualeffectgraph/Shaders/VFXCommonOutput.hlsl\"\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t\t\n\t\t\t#define
-      SHADERPASS SHADERPASS_DEPTH_ONLY\n\t\t\t#include \"Packages/com.unity.render-pipelines.high-definition/Runtime/VFXGraph/Shaders/VFXLit.hlsl\"\n\t\t\t\n\t\t\t#ifndef
-      VFX_SHADERGRAPH\n\t\t\t\n\t\t\tvoid VFXGetHDRPLitData(out SurfaceData surfaceData,
-      out BuiltinData builtinData, out BSDFData bsdfData, out PreLightData preLightData,
-      VFX_VARYING_PS_INPUTS i, float3 normalWS, const VFXUVData uvData, uint2 tileIndex)\n\t\t\t{\t\n\t\t\t\t#if
-      HDRP_MATERIAL_TYPE_TRANSLUCENT\n\t\t\t\t // Loads diffusion profile\n\t\t\t\t#else\n\t\t\t\tconst
-      uint diffusionProfileHash = 0;\n\t\t\t\t#endif\n\t\t\t\t\n\t\t\t\tfloat3 posRWS
-      = VFXGetPositionRWS(i);\n\t\t\t\tfloat4 posSS = i.VFX_VARYING_POSCS;\n\t\t\t\tPositionInputs
-      posInput = GetPositionInput(posSS.xy, _ScreenSize.zw, posSS.z, posSS.w, posRWS,
-      tileIndex);\n\t\t\t\t\n\t\t\t\tfloat alpha;\n\t\t\t\tsurfaceData = VFXGetSurfaceData(i,normalWS,uvData,diffusionProfileHash,alpha);\t\n\t\t\t\tbsdfData
-      = ConvertSurfaceDataToBSDFData(posSS.xy, surfaceData);\n\t\t\t\n\t\t\t\tpreLightData
-      = GetPreLightData(GetWorldSpaceNormalizeViewDir(posRWS),posInput,bsdfData);\n\t\t\t\t\n\t\t\t\tpreLightData.diffuseFGD
-      = 1.0f;\n\t\t\t    //TODO: investigate why this is needed\n\t\t\t    preLightData.coatPartLambdaV
-      = 0;\n\t\t\t    preLightData.coatIblR = 0;\n\t\t\t    preLightData.coatIblF
-      = 0;\n\t\t\t    \n\t\t\t\tbuiltinData = VFXGetBuiltinData(i,posInput,surfaceData,uvData,alpha);\n\t\t\t}\n\t\t\t\n\t\t\tvoid
-      VFXGetHDRPLitData(out SurfaceData surfaceData, out BuiltinData builtinData,
-      VFX_VARYING_PS_INPUTS i, float3 normalWS, const VFXUVData uvData)\n\t\t\t{\n\t\t\t\tBSDFData
-      bsdfData = (BSDFData)0;\n\t\t\t\tPreLightData preLightData = (PreLightData)0;\n\t\t\t\tpreLightData.diffuseFGD
-      = 1.0f;\n\t\t\t\tVFXGetHDRPLitData(surfaceData,builtinData,bsdfData,preLightData,i,normalWS,uvData,uint2(0,0));\n\t\t\t}\n\t\t\t\n\t\t\t#endif\n\t\t\t\n\t\t\t\n\t\t\t#include
-      \"Packages/com.unity.render-pipelines.high-definition/Runtime/VFXGraph/Shaders/VFXLitPixelOutput.hlsl\"\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t\t\t\t\n\t\t\t\n\t\t\t\t\n\t\t\t#pragma
-      fragment frag\n\t\t\tvoid frag(ps_input i\n\t\t\t#if USE_DOUBLE_SIDED\n\t\t\t\t,
-      bool frontFace : SV_IsFrontFace\n\t\t\t#endif\n\t\t\t\n\t\t\t#if IS_MOTION_VECTORS_PASS\n\t\t\t\t,
-      out float4 outMotionVector : SV_Target0\n\t\t\t\t#ifdef WRITE_NORMAL_BUFFER\n\t\t\t\t\t,
-      out float4 outNormalBuffer : SV_Target1\n\t\t\t\t#endif\n\t\t\t#else\n\t\t\t\t#ifdef
-      WRITE_NORMAL_BUFFER\n\t\t\t\t\t, out float4 outNormalBuffer : SV_Target0\n\t\t\t\t#elif
-      SCENESELECTIONPASS\n\t\t\t\t\t, out float4 outColor : SV_Target0\n\t\t\t\t#endif\n\t\t\t#endif\n\t\t\t\t)\n\t\t\t{\n\t\t\t\tUNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);\n\t\t\t\tVFXTransformPSInputs(i);\n\t\t\t\t#ifdef
-      VFX_SHADERGRAPH\n\t\t\t        \n\t\t\t        \n\t\t\t\t\n\t\t\t        float
-      alpha = OUTSG.;\n\t\t\t    #else\n\t\t\t\tfloat alpha = VFXGetFragmentColor(i).a;\n\t\t\t\t#if
-      HDRP_USE_BASE_COLOR_MAP_ALPHA\n\t\t\t\t\talpha *= VFXGetTextureColor(VFX_SAMPLER(baseColorMap),i).a;\n\t\t\t\t#endif\n\t\t\t   
-      #endif\n\t\t\t\tVFXClipFragmentColor(alpha,i);\n\t\t\t\t\n\t\t\t\t#ifdef WRITE_NORMAL_BUFFER\n\t\t\t\t\t\n\t\t\t\t\t\t\t\t#if
-      USE_DOUBLE_SIDED\n\t\t\t\t\t\t\t\tconst float faceMul = frontFace ? 1.0f :
-      -1.0f;\n\t\t\t\t\t\t\t\t#else\n\t\t\t\t\t\t\t\tconst float faceMul = 1.0f;\n\t\t\t\t\t\t\t\t#endif\n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\tfloat3
-      normalWS = normalize(i.VFX_VARYING_NORMAL * faceMul);\n\t\t\t\t\t\t\t\tconst
-      VFXUVData uvData = GetUVData(i);\n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t#if (defined(VFX_VARYING_TANGENT)
-      && USE_NORMAL_MAP) || SHADERGRAPH_HAS_NORMAL\n\t\t\t\t\t\t\t\tfloat3 tangentWS
-      = normalize(i.VFX_VARYING_TANGENT.xyz);\n\t\t\t\t\t\t\t\tfloat3 bitangentWS
-      = cross(normalWS,tangentWS) * (i.VFX_VARYING_TANGENT.w * faceMul);\n\t\t\t\t\t\t\t\t#if
-      USE_NORMAL_MAP\n\t\t\t\t\t\t\t\tfloat3 n = SampleNormalMap(VFX_SAMPLER(normalMap),uvData);\n\t\t\t\t\t\t\t\tfloat3x3
-      tbn = float3x3(tangentWS,bitangentWS,normalWS);\n\t\t\t\t\t\t\t\tfloat normalScale
-      = 1.0f;\n\t\t\t\t\t\t\t\t#ifdef VFX_VARYING_NORMALSCALE\n\t\t\t\t\t\t\t\tnormalScale
-      = i.VFX_VARYING_NORMALSCALE;\n\t\t\t\t\t\t\t\t#endif\n\t\t\t\t\t\t\t\tnormalWS
-      = normalize(lerp(normalWS,mul(n,tbn),normalScale));\n\t\t\t\t\t\t\t\t#endif\n\t\t\t\t\t\t\t\t#endif\n\t\t\t\t\t\t\t\t\n\t\t\t       
-      #ifndef VFX_SHADERGRAPH\n\t\t\t            VFXComputePixelOutputToNormalBuffer(i,normalWS,uvData,outNormalBuffer);\n\t\t\t       
-      #else\n\t\t\t           #if HAS_SHADERGRAPH_PARAM_NORMAL\n\t\t\t              
-      float3 n =  OUTSG.Normal_8;\n\t\t\t               float3x3 tbn = float3x3(tangentWS,bitangentWS,normalWS);\n\t\t\t              
-      normalWS = mul(n,tbn);\n\t\t\t           #endif\n\t\t\t           SurfaceData
-      surface = (SurfaceData)0;\n\t\t\t           \n\t\t\t           surface.normalWS
-      = normalWS;\n\t\t\t           \n\t\t\t           EncodeIntoNormalBuffer(ConvertSurfaceDataToNormalData(surface),
-      i.VFX_VARYING_POSCS.xy, outNormalBuffer);\n\t\t\t        #endif\n\t\t\t\t#endif\n\t\t\t\n\t\t\t\t#if
-      IS_MOTION_VECTORS_PASS\n\t\t\t\t\t\n\t\t\t\t\t\t\tfloat2 velocity = (i.VFX_VARYING_VELOCITY_CPOS.xy/i.VFX_VARYING_VELOCITY_CPOS.w)
-      - (i.VFX_VARYING_VELOCITY_CPOS_PREVIOUS.xy/i.VFX_VARYING_VELOCITY_CPOS_PREVIOUS.w);\n\t\t\t\t\t\t\t#if
-      UNITY_UV_STARTS_AT_TOP\n\t\t\t\t\t\t\t\tvelocity.y = -velocity.y;\n\t\t\t\t\t\t\t#endif\n\t\t\t\t\t\t\tfloat4
-      encodedMotionVector = 0.0f;\n\t\t\t\t\t\t\tVFXEncodeMotionVector(velocity *
-      0.5f, encodedMotionVector);\n\t\t\t\t\t\t\t\n\t\t\t\t\toutMotionVector = encodedMotionVector;\n\t\t\t\t#endif\n\t\t\t\n\t\t\t\t#if
-      SCENESELECTIONPASS\n\t\t\t\t\t// We use depth prepass for scene selection in
-      the editor, this code allow to output the outline correctly\n\t\t\t\t\toutColor
-      = float4(_ObjectId, _PassValue, 1.0, 1.0);\n\t\t\t\t#endif\n\t\t\t}\n\t\t\n\t\t\tENDHLSL\n\t\t}\n\t\t\n\r\n\t\tPass\n\t\t{\t\t\n\t\t\tTags
+      = float4(_ObjectId, _PassValue, 1.0, 1.0);\n\t\t\t\t#endif\n\t\t\t}\n\t\t\n\t\t\n\t\t\n\t\t\tENDHLSL\n\t\t}\n\t\t\n\r\n\t\t\r\n\t\tPass\n\t\t{\t\t\n\t\t\tTags
       { \"LightMode\"=\"GBuffer\" }\n\t\t\t\n\t\t\tStencil\n\t\t\t{\n\t\t\t\tWriteMask
       7\n\t\t\t\tRef  2\n\t\t\t\tComp Always\n\t\t\t\tPass Replace\n\t\t\t}\t\n\t\t\t\t\n\t\t\tHLSLPROGRAM\n\t\t\t#pragma
       target 4.5\n\t\t\t\n\t\t\t#pragma multi_compile _ LIGHT_LAYERS\n\t\t\t#pragma
@@ -5637,8 +5452,8 @@ VisualEffectResource:
       * 0x4 + 0xBB81) << 2));\n\t\t\t\t\t\tattributes.angleZ = asfloat(attributeBuffer.Load((index
       * 0x4 + 0xBB82) << 2));\n\t\t\t\t\t\tattributes.size = asfloat(attributeBuffer.Load((index
       * 0x4 + 0xBB83) << 2));\n\t\t\t\t\t\tattributes.color = asfloat(attributeBuffer.Load3((index
-      * 0x4 + 0x13880) << 2));\n\t\t\t\t\t\tattributes.position = asfloat(attributeBuffer.Load3((index
-      * 0x4 + 0x1B580) << 2));\n\t\t\t\t\t\tattributes.particleId = (attributeBuffer.Load((index
+      * 0x8 + 0x13880) << 2));\n\t\t\t\t\t\tattributes.position = asfloat(attributeBuffer.Load3((index
+      * 0x8 + 0x13884) << 2));\n\t\t\t\t\t\tattributes.particleId = (attributeBuffer.Load((index
       * 0x1 + 0x23280) << 2));\n\t\t\t\t\t\tattributes.alpha = (float)1;\n\t\t\t\t\t\tattributes.alive
       = (bool)true;\n\t\t\t\t\t\tattributes.axisX = float3(1, 0, 0);\n\t\t\t\t\t\tattributes.axisY
       = float3(0, 1, 0);\n\t\t\t\t\t\tattributes.axisZ = float3(0, 0, 1);\n\t\t\t\t\t\tattributes.pivotX
@@ -5651,8 +5466,8 @@ VisualEffectResource:
       = asfloat(attributeBuffer.Load((index * 0x4 + 0xBB81) << 2));\n\t\t\t\t\t\tattributes.angleZ
       = asfloat(attributeBuffer.Load((index * 0x4 + 0xBB82) << 2));\n\t\t\t\t\t\tattributes.size
       = asfloat(attributeBuffer.Load((index * 0x4 + 0xBB83) << 2));\n\t\t\t\t\t\tattributes.color
-      = asfloat(attributeBuffer.Load3((index * 0x4 + 0x13880) << 2));\n\t\t\t\t\t\tattributes.position
-      = asfloat(attributeBuffer.Load3((index * 0x4 + 0x1B580) << 2));\n\t\t\t\t\t\tattributes.particleId
+      = asfloat(attributeBuffer.Load3((index * 0x8 + 0x13880) << 2));\n\t\t\t\t\t\tattributes.position
+      = asfloat(attributeBuffer.Load3((index * 0x8 + 0x13884) << 2));\n\t\t\t\t\t\tattributes.particleId
       = (attributeBuffer.Load((index * 0x1 + 0x23280) << 2));\n\t\t\t\t\t\tattributes.alpha
       = (float)1;\n\t\t\t\t\t\tattributes.axisX = float3(1, 0, 0);\n\t\t\t\t\t\tattributes.axisY
       = float3(0, 1, 0);\n\t\t\t\t\t\tattributes.axisZ = float3(0, 0, 1);\n\t\t\t\t\t\tattributes.pivotX
@@ -5728,11 +5543,11 @@ VisualEffectResource:
       VFX_VARYING_EMISSIVE\n\t\t\t\t\t\t\t\t\t#if HDRP_USE_EMISSIVE_COLOR\n\t\t\t\t\t\t\t\t\to.VFX_VARYING_EMISSIVE
       = attributes.color;\n\t\t\t\t\t\t\t\t\t#elif HDRP_USE_ADDITIONAL_EMISSIVE_COLOR\n\t\t\t\t\t\t\t\t\tfloat4
       emissiveColor = (float4)0;\n\t\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t    uint
-      tmp_bb = attributes.particleId ^ asuint(uniform_c);\n\t\t\t\t\t\t\t\t\t   
-      float tmp_bc = FixedRand(tmp_bb);\n\t\t\t\t\t\t\t\t\t    float tmp_bd = tmp_bc
-      + uniform_d;\n\t\t\t\t\t\t\t\t\t    float tmp_be = frac(tmp_bd);\n\t\t\t\t\t\t\t\t\t   
-      float tmp_bf = saturate(tmp_be);\n\t\t\t\t\t\t\t\t\t    float4 tmp_bg = SampleGradient(uniform_b,tmp_bf);\n\t\t\t\t\t\t\t\t\t   
-      \n\t\t\t\t\t\t\t\t\t    emissiveColor = tmp_bg;\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\to.VFX_VARYING_EMISSIVE
+      tmp_ba = attributes.particleId ^ asuint(uniform_c);\n\t\t\t\t\t\t\t\t\t   
+      float tmp_bb = FixedRand(tmp_ba);\n\t\t\t\t\t\t\t\t\t    float tmp_bc = tmp_bb
+      + uniform_d;\n\t\t\t\t\t\t\t\t\t    float tmp_bd = frac(tmp_bc);\n\t\t\t\t\t\t\t\t\t   
+      float tmp_be = saturate(tmp_bd);\n\t\t\t\t\t\t\t\t\t    float4 tmp_bf = SampleGradient(uniform_b,tmp_be);\n\t\t\t\t\t\t\t\t\t   
+      \n\t\t\t\t\t\t\t\t\t    emissiveColor = tmp_bf;\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\to.VFX_VARYING_EMISSIVE
       = emissiveColor;\n\t\t\t\t\t\t\t\t\t#endif\n\t\t\t\t\t\t\t\t\t#endif\n\t\t\t\t\t\t\t\t\t#if
       HDRP_USE_ADDITIONAL_BASE_COLOR\n\t\t\t\t\t\t\t\t\t#ifdef VFX_VARYING_COLOR\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\to.VFX_VARYING_COLOR
       = baseColor;\n\t\t\t\t\t\t\t\t\t#endif\n\t\t\t\t\t\t\t\t\t#endif\n\t\t\t\t\t\t\t\t\t#endif\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\n\t\t\t   
@@ -5869,8 +5684,8 @@ VisualEffectResource:
       * 0x4 + 0xBB81) << 2));\n\t\t\t\t\t\tattributes.angleZ = asfloat(attributeBuffer.Load((index
       * 0x4 + 0xBB82) << 2));\n\t\t\t\t\t\tattributes.size = asfloat(attributeBuffer.Load((index
       * 0x4 + 0xBB83) << 2));\n\t\t\t\t\t\tattributes.color = asfloat(attributeBuffer.Load3((index
-      * 0x4 + 0x13880) << 2));\n\t\t\t\t\t\tattributes.position = asfloat(attributeBuffer.Load3((index
-      * 0x4 + 0x1B580) << 2));\n\t\t\t\t\t\tattributes.particleId = (attributeBuffer.Load((index
+      * 0x8 + 0x13880) << 2));\n\t\t\t\t\t\tattributes.position = asfloat(attributeBuffer.Load3((index
+      * 0x8 + 0x13884) << 2));\n\t\t\t\t\t\tattributes.particleId = (attributeBuffer.Load((index
       * 0x1 + 0x23280) << 2));\n\t\t\t\t\t\tattributes.alpha = (float)1;\n\t\t\t\t\t\tattributes.alive
       = (bool)true;\n\t\t\t\t\t\tattributes.axisX = float3(1, 0, 0);\n\t\t\t\t\t\tattributes.axisY
       = float3(0, 1, 0);\n\t\t\t\t\t\tattributes.axisZ = float3(0, 0, 1);\n\t\t\t\t\t\tattributes.pivotX
@@ -5883,8 +5698,8 @@ VisualEffectResource:
       = asfloat(attributeBuffer.Load((index * 0x4 + 0xBB81) << 2));\n\t\t\t\t\t\tattributes.angleZ
       = asfloat(attributeBuffer.Load((index * 0x4 + 0xBB82) << 2));\n\t\t\t\t\t\tattributes.size
       = asfloat(attributeBuffer.Load((index * 0x4 + 0xBB83) << 2));\n\t\t\t\t\t\tattributes.color
-      = asfloat(attributeBuffer.Load3((index * 0x4 + 0x13880) << 2));\n\t\t\t\t\t\tattributes.position
-      = asfloat(attributeBuffer.Load3((index * 0x4 + 0x1B580) << 2));\n\t\t\t\t\t\tattributes.particleId
+      = asfloat(attributeBuffer.Load3((index * 0x8 + 0x13880) << 2));\n\t\t\t\t\t\tattributes.position
+      = asfloat(attributeBuffer.Load3((index * 0x8 + 0x13884) << 2));\n\t\t\t\t\t\tattributes.particleId
       = (attributeBuffer.Load((index * 0x1 + 0x23280) << 2));\n\t\t\t\t\t\tattributes.alpha
       = (float)1;\n\t\t\t\t\t\tattributes.axisX = float3(1, 0, 0);\n\t\t\t\t\t\tattributes.axisY
       = float3(0, 1, 0);\n\t\t\t\t\t\tattributes.axisZ = float3(0, 0, 1);\n\t\t\t\t\t\tattributes.pivotX
@@ -5960,11 +5775,11 @@ VisualEffectResource:
       VFX_VARYING_EMISSIVE\n\t\t\t\t\t\t\t\t\t#if HDRP_USE_EMISSIVE_COLOR\n\t\t\t\t\t\t\t\t\to.VFX_VARYING_EMISSIVE
       = attributes.color;\n\t\t\t\t\t\t\t\t\t#elif HDRP_USE_ADDITIONAL_EMISSIVE_COLOR\n\t\t\t\t\t\t\t\t\tfloat4
       emissiveColor = (float4)0;\n\t\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t    uint
-      tmp_bb = attributes.particleId ^ asuint(uniform_c);\n\t\t\t\t\t\t\t\t\t   
-      float tmp_bc = FixedRand(tmp_bb);\n\t\t\t\t\t\t\t\t\t    float tmp_bd = tmp_bc
-      + uniform_d;\n\t\t\t\t\t\t\t\t\t    float tmp_be = frac(tmp_bd);\n\t\t\t\t\t\t\t\t\t   
-      float tmp_bf = saturate(tmp_be);\n\t\t\t\t\t\t\t\t\t    float4 tmp_bg = SampleGradient(uniform_b,tmp_bf);\n\t\t\t\t\t\t\t\t\t   
-      \n\t\t\t\t\t\t\t\t\t    emissiveColor = tmp_bg;\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\to.VFX_VARYING_EMISSIVE
+      tmp_ba = attributes.particleId ^ asuint(uniform_c);\n\t\t\t\t\t\t\t\t\t   
+      float tmp_bb = FixedRand(tmp_ba);\n\t\t\t\t\t\t\t\t\t    float tmp_bc = tmp_bb
+      + uniform_d;\n\t\t\t\t\t\t\t\t\t    float tmp_bd = frac(tmp_bc);\n\t\t\t\t\t\t\t\t\t   
+      float tmp_be = saturate(tmp_bd);\n\t\t\t\t\t\t\t\t\t    float4 tmp_bf = SampleGradient(uniform_b,tmp_be);\n\t\t\t\t\t\t\t\t\t   
+      \n\t\t\t\t\t\t\t\t\t    emissiveColor = tmp_bf;\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\to.VFX_VARYING_EMISSIVE
       = emissiveColor;\n\t\t\t\t\t\t\t\t\t#endif\n\t\t\t\t\t\t\t\t\t#endif\n\t\t\t\t\t\t\t\t\t#if
       HDRP_USE_ADDITIONAL_BASE_COLOR\n\t\t\t\t\t\t\t\t\t#ifdef VFX_VARYING_COLOR\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\to.VFX_VARYING_COLOR
       = baseColor;\n\t\t\t\t\t\t\t\t\t#endif\n\t\t\t\t\t\t\t\t\t#endif\n\t\t\t\t\t\t\t\t\t#endif\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\n\t\t\t   
@@ -6075,8 +5890,8 @@ VisualEffectResource:
       * 0x4 + 0xBB81) << 2));\n\t\t\t\t\t\tattributes.angleZ = asfloat(attributeBuffer.Load((index
       * 0x4 + 0xBB82) << 2));\n\t\t\t\t\t\tattributes.size = asfloat(attributeBuffer.Load((index
       * 0x4 + 0xBB83) << 2));\n\t\t\t\t\t\tattributes.color = asfloat(attributeBuffer.Load3((index
-      * 0x4 + 0x13880) << 2));\n\t\t\t\t\t\tattributes.position = asfloat(attributeBuffer.Load3((index
-      * 0x4 + 0x1B580) << 2));\n\t\t\t\t\t\tattributes.particleId = (attributeBuffer.Load((index
+      * 0x8 + 0x13880) << 2));\n\t\t\t\t\t\tattributes.position = asfloat(attributeBuffer.Load3((index
+      * 0x8 + 0x13884) << 2));\n\t\t\t\t\t\tattributes.particleId = (attributeBuffer.Load((index
       * 0x1 + 0x23280) << 2));\n\t\t\t\t\t\tattributes.alpha = (float)1;\n\t\t\t\t\t\tattributes.alive
       = (bool)true;\n\t\t\t\t\t\tattributes.axisX = float3(1, 0, 0);\n\t\t\t\t\t\tattributes.axisY
       = float3(0, 1, 0);\n\t\t\t\t\t\tattributes.axisZ = float3(0, 0, 1);\n\t\t\t\t\t\tattributes.pivotX
@@ -6089,8 +5904,8 @@ VisualEffectResource:
       = asfloat(attributeBuffer.Load((index * 0x4 + 0xBB81) << 2));\n\t\t\t\t\t\tattributes.angleZ
       = asfloat(attributeBuffer.Load((index * 0x4 + 0xBB82) << 2));\n\t\t\t\t\t\tattributes.size
       = asfloat(attributeBuffer.Load((index * 0x4 + 0xBB83) << 2));\n\t\t\t\t\t\tattributes.color
-      = asfloat(attributeBuffer.Load3((index * 0x4 + 0x13880) << 2));\n\t\t\t\t\t\tattributes.position
-      = asfloat(attributeBuffer.Load3((index * 0x4 + 0x1B580) << 2));\n\t\t\t\t\t\tattributes.particleId
+      = asfloat(attributeBuffer.Load3((index * 0x8 + 0x13880) << 2));\n\t\t\t\t\t\tattributes.position
+      = asfloat(attributeBuffer.Load3((index * 0x8 + 0x13884) << 2));\n\t\t\t\t\t\tattributes.particleId
       = (attributeBuffer.Load((index * 0x1 + 0x23280) << 2));\n\t\t\t\t\t\tattributes.alpha
       = (float)1;\n\t\t\t\t\t\tattributes.axisX = float3(1, 0, 0);\n\t\t\t\t\t\tattributes.axisY
       = float3(0, 1, 0);\n\t\t\t\t\t\tattributes.axisZ = float3(0, 0, 1);\n\t\t\t\t\t\tattributes.pivotX
@@ -6310,56 +6125,6 @@ VisualEffectResource:
       * 0x8 + 0x7687) << 2));\nattributes.particleId = (attributeBuffer.Load((index
       * 0x1 + 0x19EC0) << 2));\n\n\r\n\t\t\tAttributeFromCurve_7DF18693( /*inout
       */attributes.size, attributes.age, attributes.lifetime, Size_a);\n\t\t\t\n\r\n\t\t\t\r\n\t\t\t\n\t\t\tfloat3
-      size3 = float3(attributes.size,attributes.size,attributes.size);\n\t\t\t#if
-      VFX_USE_SCALEX_CURRENT\n\t\t\tsize3.x *= attributes.scaleX;\n\t\t\t#endif\n\t\t\t#if
-      VFX_USE_SCALEY_CURRENT\n\t\t\tsize3.y *= attributes.scaleY;\n\t\t\t#endif\n\t\t\t#if
-      VFX_USE_SCALEZ_CURRENT\n\t\t\tsize3.z *= attributes.scaleZ;\n\t\t\t#endif\n\t\t\t\r\n\t\t\tfloat4x4
-      elementToVFX = GetElementToVFXMatrix(\r\n\t\t\t\tattributes.axisX,\r\n\t\t\t\tattributes.axisY,\r\n\t\t\t\tattributes.axisZ,\r\n\t\t\t\tfloat3(attributes.angleX,attributes.angleY,attributes.angleZ),\r\n\t\t\t\tfloat3(attributes.pivotX,attributes.pivotY,attributes.pivotZ),\r\n\t\t\t\tsize3,\r\n\t\t\t\tattributes.position);\r\n\t\t\r\n\t\t\tUNITY_UNROLL\r\n\t\t\tfor
-      (int itIndexMatrixRow = 0; itIndexMatrixRow < 3; ++itIndexMatrixRow)\r\n\t\t\t{\r\n\t\t\t\tUNITY_UNROLL\r\n\t\t\t\tfor
-      (int itIndexMatrixCol = 0; itIndexMatrixCol < 4; ++itIndexMatrixCol)\r\n\t\t\t\t{\r\n\t\t\t\t\tuint
-      itIndexMatrix = itIndexMatrixCol * 4 + itIndexMatrixRow;\r\n\t\t\t\t\tfloat
-      value = elementToVFX[itIndexMatrixRow][itIndexMatrixCol];\r\n\t\t\t\t\telementToVFXBuffer.Store((index
-      * 16 + itIndexMatrix) << 2, asuint(value));\r\n\t\t\t\t}\r\n\t\t\t}\r\n\r\n           
-      elementToVFXBuffer.Store((index*16 + 15) << 2, attributes.alive ? asuint(currentFrameIndex)
-      : 0u);\r\n\t\t}\t\t\r\n\t}\r\n}\r\n"
-  - compute: 1
-    name: '[System 4]MotionVector'
-    source: "#pragma kernel CSMain\r\n#define NB_THREADS_PER_GROUP 64\n#define HAS_ATTRIBUTES
-      1\n#define VFX_USE_ANGLEX_CURRENT 1\n#define VFX_USE_ANGLEY_CURRENT 1\n#define
-      VFX_USE_ANGLEZ_CURRENT 1\n#define VFX_USE_SIZE_CURRENT 1\n#define VFX_USE_POSITION_CURRENT
-      1\n#define VFX_USE_PARTICLEID_CURRENT 1\n#define VFX_USE_ALPHA_CURRENT 1\n#define
-      VFX_USE_ALIVE_CURRENT 1\n#define VFX_USE_AXISX_CURRENT 1\n#define VFX_USE_AXISY_CURRENT
-      1\n#define VFX_USE_AXISZ_CURRENT 1\n#define VFX_USE_PIVOTX_CURRENT 1\n#define
-      VFX_USE_PIVOTY_CURRENT 1\n#define VFX_USE_PIVOTZ_CURRENT 1\n#define VFX_USE_SCALEX_CURRENT
-      1\n#define VFX_USE_SCALEY_CURRENT 1\n#define VFX_USE_SCALEZ_CURRENT 1\n#define
-      VFX_LOCAL_SPACE 1\n#include \"Packages/com.unity.render-pipelines.high-definition/Runtime/VFXGraph/Shaders/VFXDefines.hlsl\"\n\n\r\nCBUFFER_START(parameters)\n   
-      float uniform_b;\n    float uniform_c;\n    float uniform_d;\n    float currentFrameIndex;\nCBUFFER_END\n\nstruct
-      Attributes\n{\n    float angleX;\n    float angleY;\n    float angleZ;\n   
-      float size;\n    float3 position;\n    uint particleId;\n    float alpha;\n   
-      bool alive;\n    float3 axisX;\n    float3 axisY;\n    float3 axisZ;\n    float
-      pivotX;\n    float pivotY;\n    float pivotZ;\n    float scaleX;\n    float
-      scaleY;\n    float scaleZ;\n};\n\nstruct SourceAttributes\n{\n};\n\n\n\r\n#include
-      \"Packages/com.unity.render-pipelines.high-definition/Runtime/VFXGraph/Shaders/VFXCommon.hlsl\"\n#include
-      \"Packages/com.unity.visualeffectgraph/Shaders/VFXCommon.hlsl\"\n\n\r\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n\r\nByteAddressBuffer
-      attributeBuffer;\r\nRWByteAddressBuffer elementToVFXBuffer;\r\n#if VFX_USE_ALIVE_CURRENT\r\nStructuredBuffer<uint>
-      deadListOut;\r\n#endif\r\n\r\n#if VFX_HAS_INDIRECT_DRAW\r\nStructuredBuffer<uint>
-      indirectBuffer;\r\n#endif\r\n\r\nCBUFFER_START(updateParams)\r\n\tuint nbMax;\r\n\tuint
-      dispatchWidth;\r\n\tuint systemSeed;\r\nCBUFFER_END\r\n\r\n\r\n\r\n[numthreads(NB_THREADS_PER_GROUP,1,1)]\r\nvoid
-      CSMain(uint3 groupId\t\t: SV_GroupID,\r\n\t\t\tuint3 groupThreadId\t: SV_GroupThreadID)\r\n{\r\n\tuint
-      id = groupThreadId.x + groupId.x * NB_THREADS_PER_GROUP + groupId.y * dispatchWidth
-      * NB_THREADS_PER_GROUP;\r\n\tuint index = id;\r\n\tif (id < nbMax)\r\n\t{\r\n\t\tAttributes
-      attributes = (Attributes)0;\r\n\t\tSourceAttributes sourceAttributes = (SourceAttributes)0;\r\n\t\t\r\n\t\tattributes.alive
-      = (bool)true;\n\n\r\n\t\tif (attributes.alive)\r\n\t\t{\r\n\t\t\tattributes.angleX
-      = asfloat(attributeBuffer.Load((index * 0x4 + 0xBB80) << 2));\nattributes.angleY
-      = asfloat(attributeBuffer.Load((index * 0x4 + 0xBB81) << 2));\nattributes.angleZ
-      = asfloat(attributeBuffer.Load((index * 0x4 + 0xBB82) << 2));\nattributes.size
-      = asfloat(attributeBuffer.Load((index * 0x4 + 0xBB83) << 2));\nattributes.position
-      = asfloat(attributeBuffer.Load3((index * 0x4 + 0x1B580) << 2));\nattributes.particleId
-      = (attributeBuffer.Load((index * 0x1 + 0x23280) << 2));\nattributes.alpha =
-      (float)1;\nattributes.axisX = float3(1, 0, 0);\nattributes.axisY = float3(0,
-      1, 0);\nattributes.axisZ = float3(0, 0, 1);\nattributes.pivotX = (float)0;\nattributes.pivotY
-      = (float)0;\nattributes.pivotZ = (float)0;\nattributes.scaleX = (float)1;\nattributes.scaleY
-      = (float)1;\nattributes.scaleZ = (float)1;\n\n\r\n\t\t\t\r\n\t\t\t\r\n\t\t\t\n\t\t\tfloat3
       size3 = float3(attributes.size,attributes.size,attributes.size);\n\t\t\t#if
       VFX_USE_SCALEX_CURRENT\n\t\t\tsize3.x *= attributes.scaleX;\n\t\t\t#endif\n\t\t\t#if
       VFX_USE_SCALEY_CURRENT\n\t\t\tsize3.y *= attributes.scaleY;\n\t\t\t#endif\n\t\t\t#if
@@ -7507,14 +7272,14 @@ VisualEffectResource:
         type: 3
         offset:
           bucket: 80000
-          structure: 4
+          structure: 8
           element: 0
       - name: position
         type: 3
         offset:
-          bucket: 112000
-          structure: 4
-          element: 0
+          bucket: 80000
+          structure: 8
+          element: 4
       - name: particleId
         type: 6
         offset:
@@ -7609,13 +7374,6 @@ VisualEffectResource:
     - desc:
         type: 1
         size: 320000
-        layout: []
-        capacity: 0
-        stride: 4
-      frameCount: 2
-    - desc:
-        type: 1
-        size: 512000
         layout: []
         capacity: 0
         stride: 4
@@ -8151,46 +7909,11 @@ VisualEffectResource:
       params: []
       processor: {fileID: 0}
       shaderSourceIndex: 10
-    - type: 805306368
-      buffers:
-      - nameId: attributeBuffer
-        index: 3
-      temporaryBuffers:
-      - mapping:
-          nameId: elementToVFXBuffer
-          index: 3
-        pastFrameIndex: 0
-        perCameraBuffer: 1
-      values:
-      - nameId: uniform_b
-        index: 48
-      - nameId: uniform_c
-        index: 14
-      - nameId: uniform_d
-        index: 23
-      - nameId: currentFrameIndex
-        index: 58
-      - nameId: unity_ObjectToWorld
-        index: 74
-      - nameId: unity_WorldToObject
-        index: 77
-      params:
-      - nameId: mesh
-        index: 61
-      - nameId: subMeshMask
-        index: 62
-      processor: {fileID: 0}
-      shaderSourceIndex: 15
     - type: 1073741828
       buffers:
       - nameId: attributeBuffer
         index: 3
-      temporaryBuffers:
-      - mapping:
-          nameId: elementToVFXBufferPrevious
-          index: 3
-        pastFrameIndex: 1
-        perCameraBuffer: 1
+      temporaryBuffers: []
       values:
       - nameId: uniform_b
         index: 48
@@ -8198,8 +7921,6 @@ VisualEffectResource:
         index: 14
       - nameId: uniform_d
         index: 23
-      - nameId: currentFrameIndex
-        index: 58
       params:
       - nameId: mesh
         index: 61
@@ -28523,7 +28244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d78581a96eae8bf4398c282eb0b098bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Parent: {fileID: 0}
+  m_Parent: {fileID: 114350483966674976}
   m_Children: []
   m_UIPosition: {x: 0, y: 0}
   m_UICollapsed: 1
@@ -31084,7 +30805,7 @@ MonoBehaviour:
   - link: []
   blendMode: 3
   useAlphaClipping: 0
-  generateMotionVector: 1
+  generateMotionVector: 0
   m_SubOutputs:
   - {fileID: 8926484042661617221}
   cullMode: 3
