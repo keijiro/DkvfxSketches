@@ -1323,8 +1323,9 @@ VisualEffectResource:
       = attributes.color;\n\t\t\t\t\t\t\t\t\t#elif HDRP_USE_ADDITIONAL_EMISSIVE_COLOR\n\t\t\t\t\t\t\t\t\tfloat4
       emissiveColor = (float4)0;\n\t\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t    float
       tmp_v = attributes.age / attributes.lifetime;\n\t\t\t\t\t\t\t\t\t    float
-      tmp_w = saturate(tmp_v);\n\t\t\t\t\t\t\t\t\t    float4 tmp_x = SampleGradient(uniform_c,tmp_w);\n\t\t\t\t\t\t\t\t\t   
-      \n\t\t\t\t\t\t\t\t\t    emissiveColor = tmp_x;\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\to.VFX_VARYING_EMISSIVE
+      tmp_x = max(tmp_v, (float)0);\n\t\t\t\t\t\t\t\t\t    float tmp_z = min(tmp_x,
+      (float)1);\n\t\t\t\t\t\t\t\t\t    float4 tmp_ba = SampleGradient(uniform_c,tmp_z);\n\t\t\t\t\t\t\t\t\t   
+      \n\t\t\t\t\t\t\t\t\t    emissiveColor = tmp_ba;\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\to.VFX_VARYING_EMISSIVE
       = emissiveColor;\n\t\t\t\t\t\t\t\t\t#endif\n\t\t\t\t\t\t\t\t\t#endif\n\t\t\t\t\t\t\t\t\t#if
       HDRP_USE_ADDITIONAL_BASE_COLOR\n\t\t\t\t\t\t\t\t\t#ifdef VFX_VARYING_COLOR\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\to.VFX_VARYING_COLOR
       = baseColor;\n\t\t\t\t\t\t\t\t\t#endif\n\t\t\t\t\t\t\t\t\t#endif\n\t\t\t\t\t\t\t\t\t#endif\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\n\t\t\t\n\t\t\t\treturn
@@ -1713,11 +1714,11 @@ VisualEffectResource:
       }\n\t\t\t    o._WireColor = _WireColor__;float _WireWidth__ = (float)0;{\n\t\t\t       
       \n\t\t\t        _WireWidth__ = (float)0.800000012;\n\t\t\t    }\n\t\t\t   
       o._WireWidth = _WireWidth__;float4 _EmissiveColor__ = (float4)0;{\n\t\t\t       
-      float tmp_ba = attributes.age / attributes.lifetime;\n\t\t\t        float tmp_bb
-      = saturate(tmp_ba);\n\t\t\t        float4 tmp_bc = SampleGradient(uniform_c,tmp_bb);\n\t\t\t       
-      \n\t\t\t        _EmissiveColor__ = tmp_bc;\n\t\t\t    }\n\t\t\t    o._EmissiveColor
-      = _EmissiveColor__;\n\n\t\t\t\t\n\t\t\t\treturn o;\n\t\t\t}\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t#include
-      \"Packages/com.unity.visualeffectgraph/Shaders/VFXCommonOutput.hlsl\"\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t\t\n\t\t\t#define
+      float tmp_ba = attributes.age / attributes.lifetime;\n\t\t\t        float tmp_bc
+      = max(tmp_ba, (float)0);\n\t\t\t        float tmp_be = min(tmp_bc, (float)1);\n\t\t\t       
+      float4 tmp_bf = SampleGradient(uniform_c,tmp_be);\n\t\t\t        \n\t\t\t       
+      _EmissiveColor__ = tmp_bf;\n\t\t\t    }\n\t\t\t    o._EmissiveColor = _EmissiveColor__;\n\n\t\t\t\t\n\t\t\t\treturn
+      o;\n\t\t\t}\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t#include \"Packages/com.unity.visualeffectgraph/Shaders/VFXCommonOutput.hlsl\"\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t\t\n\t\t\t#define
       SHADERPASS SHADERPASS_DEPTH_ONLY\n\t\t\t#include \"Packages/com.unity.render-pipelines.high-definition/Runtime/VFXGraph/Shaders/VFXLit.hlsl\"\n\t\t\t\n\t\t\t#ifndef
       VFX_SHADERGRAPH\n\t\t\t\n\t\t\tvoid VFXGetHDRPLitData(out SurfaceData surfaceData,
       out BuiltinData builtinData, out BSDFData bsdfData, out PreLightData preLightData,
@@ -1929,11 +1930,11 @@ VisualEffectResource:
       }\n\t\t\t    o._WireColor = _WireColor__;float _WireWidth__ = (float)0;{\n\t\t\t       
       \n\t\t\t        _WireWidth__ = (float)0.800000012;\n\t\t\t    }\n\t\t\t   
       o._WireWidth = _WireWidth__;float4 _EmissiveColor__ = (float4)0;{\n\t\t\t       
-      float tmp_ba = attributes.age / attributes.lifetime;\n\t\t\t        float tmp_bb
-      = saturate(tmp_ba);\n\t\t\t        float4 tmp_bc = SampleGradient(uniform_c,tmp_bb);\n\t\t\t       
-      \n\t\t\t        _EmissiveColor__ = tmp_bc;\n\t\t\t    }\n\t\t\t    o._EmissiveColor
-      = _EmissiveColor__;\n\n\t\t\t\t\n\t\t\t\treturn o;\n\t\t\t}\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t#include
-      \"Packages/com.unity.visualeffectgraph/Shaders/VFXCommonOutput.hlsl\"\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t\t\n\t\t\t#define
+      float tmp_ba = attributes.age / attributes.lifetime;\n\t\t\t        float tmp_bc
+      = max(tmp_ba, (float)0);\n\t\t\t        float tmp_be = min(tmp_bc, (float)1);\n\t\t\t       
+      float4 tmp_bf = SampleGradient(uniform_c,tmp_be);\n\t\t\t        \n\t\t\t       
+      _EmissiveColor__ = tmp_bf;\n\t\t\t    }\n\t\t\t    o._EmissiveColor = _EmissiveColor__;\n\n\t\t\t\t\n\t\t\t\treturn
+      o;\n\t\t\t}\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t#include \"Packages/com.unity.visualeffectgraph/Shaders/VFXCommonOutput.hlsl\"\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t\t\n\t\t\t#define
       SHADERPASS SHADERPASS_DEPTH_ONLY\n\t\t\t#include \"Packages/com.unity.render-pipelines.high-definition/Runtime/VFXGraph/Shaders/VFXLit.hlsl\"\n\t\t\t\n\t\t\t#ifndef
       VFX_SHADERGRAPH\n\t\t\t\n\t\t\tvoid VFXGetHDRPLitData(out SurfaceData surfaceData,
       out BuiltinData builtinData, out BSDFData bsdfData, out PreLightData preLightData,
@@ -2179,11 +2180,11 @@ VisualEffectResource:
       }\n\t\t\t    o._WireColor = _WireColor__;float _WireWidth__ = (float)0;{\n\t\t\t       
       \n\t\t\t        _WireWidth__ = (float)0.800000012;\n\t\t\t    }\n\t\t\t   
       o._WireWidth = _WireWidth__;float4 _EmissiveColor__ = (float4)0;{\n\t\t\t       
-      float tmp_ba = attributes.age / attributes.lifetime;\n\t\t\t        float tmp_bb
-      = saturate(tmp_ba);\n\t\t\t        float4 tmp_bc = SampleGradient(uniform_c,tmp_bb);\n\t\t\t       
-      \n\t\t\t        _EmissiveColor__ = tmp_bc;\n\t\t\t    }\n\t\t\t    o._EmissiveColor
-      = _EmissiveColor__;\n\n\t\t\t\t\n\t\t\t\treturn o;\n\t\t\t}\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t#include
-      \"Packages/com.unity.visualeffectgraph/Shaders/VFXCommonOutput.hlsl\"\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t#define
+      float tmp_ba = attributes.age / attributes.lifetime;\n\t\t\t        float tmp_bc
+      = max(tmp_ba, (float)0);\n\t\t\t        float tmp_be = min(tmp_bc, (float)1);\n\t\t\t       
+      float4 tmp_bf = SampleGradient(uniform_c,tmp_be);\n\t\t\t        \n\t\t\t       
+      _EmissiveColor__ = tmp_bf;\n\t\t\t    }\n\t\t\t    o._EmissiveColor = _EmissiveColor__;\n\n\t\t\t\t\n\t\t\t\treturn
+      o;\n\t\t\t}\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t#include \"Packages/com.unity.visualeffectgraph/Shaders/VFXCommonOutput.hlsl\"\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t#define
       SHADERPASS SHADERPASS_GBUFFER\t\n\t\t\t#include \"Packages/com.unity.render-pipelines.high-definition/Runtime/VFXGraph/Shaders/VFXLit.hlsl\"\n\t\t\t\n\t\t\t#ifndef
       VFX_SHADERGRAPH\n\t\t\t\n\t\t\tvoid VFXGetHDRPLitData(out SurfaceData surfaceData,
       out BuiltinData builtinData, out BSDFData bsdfData, out PreLightData preLightData,
@@ -2491,11 +2492,11 @@ VisualEffectResource:
       }\n\t\t\t    o._WireColor = _WireColor__;float _WireWidth__ = (float)0;{\n\t\t\t       
       \n\t\t\t        _WireWidth__ = (float)0.800000012;\n\t\t\t    }\n\t\t\t   
       o._WireWidth = _WireWidth__;float4 _EmissiveColor__ = (float4)0;{\n\t\t\t       
-      float tmp_ba = attributes.age / attributes.lifetime;\n\t\t\t        float tmp_bb
-      = saturate(tmp_ba);\n\t\t\t        float4 tmp_bc = SampleGradient(uniform_c,tmp_bb);\n\t\t\t       
-      \n\t\t\t        _EmissiveColor__ = tmp_bc;\n\t\t\t    }\n\t\t\t    o._EmissiveColor
-      = _EmissiveColor__;\n\n\t\t\t\t\n\t\t\t\treturn o;\n\t\t\t}\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t#include
-      \"Packages/com.unity.visualeffectgraph/Shaders/VFXCommonOutput.hlsl\"\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\n\t\t\t#define
+      float tmp_ba = attributes.age / attributes.lifetime;\n\t\t\t        float tmp_bc
+      = max(tmp_ba, (float)0);\n\t\t\t        float tmp_be = min(tmp_bc, (float)1);\n\t\t\t       
+      float4 tmp_bf = SampleGradient(uniform_c,tmp_be);\n\t\t\t        \n\t\t\t       
+      _EmissiveColor__ = tmp_bf;\n\t\t\t    }\n\t\t\t    o._EmissiveColor = _EmissiveColor__;\n\n\t\t\t\t\n\t\t\t\treturn
+      o;\n\t\t\t}\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t#include \"Packages/com.unity.visualeffectgraph/Shaders/VFXCommonOutput.hlsl\"\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\n\t\t\t#define
       SHADERPASS SHADERPASS_FORWARD\n\t\t\t#include \"Packages/com.unity.render-pipelines.high-definition/Runtime/VFXGraph/Shaders/VFXLit.hlsl\"\n\t\t\t\n\t\t\t#ifndef
       VFX_SHADERGRAPH\n\t\t\t\n\t\t\tvoid VFXGetHDRPLitData(out SurfaceData surfaceData,
       out BuiltinData builtinData, out BSDFData bsdfData, out PreLightData preLightData,
@@ -2767,11 +2768,11 @@ VisualEffectResource:
       }\n\t\t\t    o._WireColor = _WireColor__;float _WireWidth__ = (float)0;{\n\t\t\t       
       \n\t\t\t        _WireWidth__ = (float)0.800000012;\n\t\t\t    }\n\t\t\t   
       o._WireWidth = _WireWidth__;float4 _EmissiveColor__ = (float4)0;{\n\t\t\t       
-      float tmp_ba = attributes.age / attributes.lifetime;\n\t\t\t        float tmp_bb
-      = saturate(tmp_ba);\n\t\t\t        float4 tmp_bc = SampleGradient(uniform_c,tmp_bb);\n\t\t\t       
-      \n\t\t\t        _EmissiveColor__ = tmp_bc;\n\t\t\t    }\n\t\t\t    o._EmissiveColor
-      = _EmissiveColor__;\n\n\t\t\t\t\n\t\t\t\treturn o;\n\t\t\t}\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t#include
-      \"Packages/com.unity.visualeffectgraph/Shaders/VFXCommonOutput.hlsl\"\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t\t\n\t\t   
+      float tmp_ba = attributes.age / attributes.lifetime;\n\t\t\t        float tmp_bc
+      = max(tmp_ba, (float)0);\n\t\t\t        float tmp_be = min(tmp_bc, (float)1);\n\t\t\t       
+      float4 tmp_bf = SampleGradient(uniform_c,tmp_be);\n\t\t\t        \n\t\t\t       
+      _EmissiveColor__ = tmp_bf;\n\t\t\t    }\n\t\t\t    o._EmissiveColor = _EmissiveColor__;\n\n\t\t\t\t\n\t\t\t\treturn
+      o;\n\t\t\t}\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t#include \"Packages/com.unity.visualeffectgraph/Shaders/VFXCommonOutput.hlsl\"\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t\t\n\t\t   
       #include \"Packages/com.unity.render-pipelines.core/ShaderLibrary/Color.hlsl\"\n\t\t   
       #include \"Packages/com.unity.shadergraph/ShaderGraphLibrary/Functions.hlsl\"\n\t\t   
       struct SG_Input_07c6bc9195fc6654ba384a3223fae0c6\n\t\t    {\n\t\t    };\n\t\t   
@@ -2932,151 +2933,157 @@ VisualEffectResource:
         data[0]: -1
         data[1]: -1
         data[2]: -1
-        data[3]: 1
+        data[3]: 14
       - op: 1
         valueIndex: 27
         data[0]: -1
         data[1]: -1
         data[2]: -1
-        data[3]: 14
+        data[3]: 1
       - op: 1
         valueIndex: 28
         data[0]: -1
         data[1]: -1
         data[2]: -1
-        data[3]: 3
+        data[3]: 1
       - op: 1
-        valueIndex: 31
+        valueIndex: 29
         data[0]: -1
         data[1]: -1
         data[2]: -1
         data[3]: 3
       - op: 1
-        valueIndex: 34
+        valueIndex: 32
         data[0]: -1
         data[1]: -1
         data[2]: -1
         data[3]: 3
-      - op: 34
-        valueIndex: 37
-        data[0]: 17
-        data[1]: 16
-        data[2]: 15
-        data[3]: -1
       - op: 1
-        valueIndex: 53
+        valueIndex: 35
+        data[0]: -1
+        data[1]: -1
+        data[2]: -1
+        data[3]: 3
+      - op: 57
+        valueIndex: 38
+        data[0]: 13
+        data[1]: -1
+        data[2]: -1
+        data[3]: 0
+      - op: 1
+        valueIndex: 39
         data[0]: -1
         data[1]: -1
         data[2]: -1
         data[3]: 13
       - op: 57
-        valueIndex: 54
-        data[0]: 14
-        data[1]: -1
-        data[2]: -1
-        data[3]: 0
-      - op: 57
-        valueIndex: 55
+        valueIndex: 40
         data[0]: 12
         data[1]: -1
         data[2]: -1
         data[3]: 1
+      - op: 34
+        valueIndex: 41
+        data[0]: 18
+        data[1]: 17
+        data[2]: 16
+        data[3]: -1
       - op: 1
-        valueIndex: 56
+        valueIndex: 57
         data[0]: -1
         data[1]: -1
         data[2]: -1
         data[3]: 13
       - op: 56
-        valueIndex: 57
-        data[0]: 19
+        valueIndex: 58
+        data[0]: 20
         data[1]: -1
         data[2]: -1
         data[3]: 1
       - op: 1
-        valueIndex: 61
+        valueIndex: 62
         data[0]: -1
         data[1]: -1
         data[2]: -1
         data[3]: 4
       - op: 1
-        valueIndex: 65
-        data[0]: -1
-        data[1]: -1
-        data[2]: -1
-        data[3]: 4
-      - op: 1
-        valueIndex: 69
+        valueIndex: 66
         data[0]: -1
         data[1]: -1
         data[2]: -1
         data[3]: 1
+      - op: 1
+        valueIndex: 67
+        data[0]: -1
+        data[1]: -1
+        data[2]: -1
+        data[3]: 4
       - op: 11
-        valueIndex: 70
+        valueIndex: 71
         data[0]: -1
         data[1]: -1
         data[2]: -1
         data[3]: -1
-      - op: 56
-        valueIndex: 71
-        data[0]: 22
+      - op: 1
+        valueIndex: 72
+        data[0]: -1
         data[1]: -1
         data[2]: -1
         data[3]: 2
+      - op: 6
+        valueIndex: 74
+        data[0]: -1
+        data[1]: -1
+        data[2]: -1
+        data[3]: -1
       - op: 1
         valueIndex: 75
         data[0]: -1
         data[1]: -1
         data[2]: -1
-        data[3]: 2
-      - op: 1
-        valueIndex: 77
-        data[0]: -1
-        data[1]: -1
-        data[2]: -1
         data[3]: 6
       - op: 9
-        valueIndex: 78
+        valueIndex: 76
         data[0]: -1
         data[1]: -1
         data[2]: -1
         data[3]: -1
       - op: 1
+        valueIndex: 92
+        data[0]: -1
+        data[1]: -1
+        data[2]: -1
+        data[3]: 1
+      - op: 1
+        valueIndex: 93
+        data[0]: -1
+        data[1]: -1
+        data[2]: -1
+        data[3]: 1
+      - op: 1
         valueIndex: 94
-        data[0]: -1
-        data[1]: -1
-        data[2]: -1
-        data[3]: 1
-      - op: 1
-        valueIndex: 95
-        data[0]: -1
-        data[1]: -1
-        data[2]: -1
-        data[3]: 1
-      - op: 1
-        valueIndex: 96
-        data[0]: -1
-        data[1]: -1
-        data[2]: -1
-        data[3]: 1
-      - op: 1
-        valueIndex: 97
         data[0]: -1
         data[1]: -1
         data[2]: -1
         data[3]: 2
       - op: 1
-        valueIndex: 99
+        valueIndex: 96
         data[0]: -1
         data[1]: -1
         data[2]: -1
         data[3]: 6
       - op: 1
-        valueIndex: 100
+        valueIndex: 97
         data[0]: -1
         data[1]: -1
         data[2]: -1
         data[3]: 15
+      - op: 1
+        valueIndex: 98
+        data[0]: -1
+        data[1]: -1
+        data[2]: -1
+        data[3]: 3
       - op: 1
         valueIndex: 101
         data[0]: -1
@@ -3088,19 +3095,13 @@ VisualEffectResource:
         data[0]: -1
         data[1]: -1
         data[2]: -1
-        data[3]: 3
-      - op: 1
-        valueIndex: 107
-        data[0]: -1
+        data[3]: 2
+      - op: 56
+        valueIndex: 106
+        data[0]: 23
         data[1]: -1
         data[2]: -1
         data[3]: 2
-      - op: 6
-        valueIndex: 109
-        data[0]: -1
-        data[1]: -1
-        data[2]: -1
-        data[3]: -1
       - op: 10
         valueIndex: 110
         data[0]: -1
@@ -3115,12 +3116,12 @@ VisualEffectResource:
         m_Array:
         - m_ExpressionIndex: 7
           m_Value: 0
-        - m_ExpressionIndex: 13
+        - m_ExpressionIndex: 14
           m_Value: 0.5
+        - m_ExpressionIndex: 15
+          m_Value: 1
         - m_ExpressionIndex: 26
           m_Value: 0.8
-        - m_ExpressionIndex: 32
-          m_Value: 1
         - m_ExpressionIndex: 33
           m_Value: 0.75
         - m_ExpressionIndex: 34
@@ -3141,11 +3142,11 @@ VisualEffectResource:
           m_Value: {x: 0, y: 0.2, z: 0}
         - m_ExpressionIndex: 10
           m_Value: {x: 6, y: 0.5, z: 2}
-        - m_ExpressionIndex: 15
-          m_Value: {x: 1, y: 1, z: 1}
         - m_ExpressionIndex: 16
-          m_Value: {x: 0, y: 0, z: 0}
+          m_Value: {x: 1, y: 1, z: 1}
         - m_ExpressionIndex: 17
+          m_Value: {x: 0, y: 0, z: 0}
+        - m_ExpressionIndex: 18
           m_Value: {x: 0, y: 0, z: 0}
         - m_ExpressionIndex: 38
           m_Value: {x: 10, y: 10, z: 10}
@@ -3153,13 +3154,13 @@ VisualEffectResource:
           m_Value: {x: 0, y: 0, z: 0}
       m_Vector4f:
         m_Array:
-        - m_ExpressionIndex: 24
-          m_Value: {x: 0.21698111, y: 0.21698111, z: 0.21698111, w: 0}
         - m_ExpressionIndex: 25
           m_Value: {x: 4.924791, y: 0.66551226, z: 0, w: 0}
+        - m_ExpressionIndex: 27
+          m_Value: {x: 0.21698111, y: 0.21698111, z: 0.21698111, w: 0}
       m_Uint:
         m_Array:
-        - m_ExpressionIndex: 30
+        - m_ExpressionIndex: 31
           m_Value: 1
         - m_ExpressionIndex: 36
           m_Value: 4294967295
@@ -3196,7 +3197,7 @@ VisualEffectResource:
             m_PreInfinity: 2
             m_PostInfinity: 2
             m_RotationOrder: 4
-        - m_ExpressionIndex: 19
+        - m_ExpressionIndex: 20
           m_Value:
             serializedVersion: 2
             m_Curve:
@@ -3230,7 +3231,7 @@ VisualEffectResource:
             m_PreInfinity: 2
             m_PostInfinity: 2
             m_RotationOrder: 4
-        - m_ExpressionIndex: 22
+        - m_ExpressionIndex: 23
           m_Value:
             serializedVersion: 2
             m_Curve:
@@ -3296,7 +3297,7 @@ VisualEffectResource:
             m_Mode: 0
             m_NumColorKeys: 2
             m_NumAlphaKeys: 2
-        - m_ExpressionIndex: 14
+        - m_ExpressionIndex: 13
           m_Value:
             serializedVersion: 2
             key0: {r: 12.844469, g: 1.7484617, b: 0, a: 1}
@@ -3342,11 +3343,11 @@ VisualEffectResource:
     - nameId: Color Map
       index: 11
     - nameId: Offset_angles
-      index: 16
-    - nameId: Offset_position
       index: 17
+    - nameId: Offset_position
+      index: 18
     - nameId: Offset_scale
-      index: 15
+      index: 16
     - nameId: Position Map
       index: 8
     m_Buffers:
@@ -3585,7 +3586,7 @@ VisualEffectResource:
       temporaryBuffers: []
       values:
       - nameId: uniform_b
-        index: 18
+        index: 22
       - nameId: uniform_c
         index: 0
       - nameId: texture_b
@@ -3614,7 +3615,7 @@ VisualEffectResource:
       - nameId: uniform_c
         index: 5
       - nameId: deltaTime_b
-        index: 41
+        index: 30
       params: []
       processor: {fileID: 0}
       shaderSourceIndex: 1
@@ -3632,13 +3633,13 @@ VisualEffectResource:
         perCameraBuffer: 1
       values:
       - nameId: Size_a
-        index: 23
+        index: 24
       - nameId: uniform_c
         index: 21
       - nameId: currentFrameIndex
-        index: 27
+        index: 28
       - nameId: unity_ObjectToWorld
-        index: 31
+        index: 32
       - nameId: unity_WorldToObject
         index: 42
       params:
@@ -3660,11 +3661,11 @@ VisualEffectResource:
         perCameraBuffer: 1
       values:
       - nameId: Size_a
-        index: 23
+        index: 24
       - nameId: uniform_c
         index: 21
       - nameId: currentFrameIndex
-        index: 27
+        index: 28
       params:
       - nameId: mesh
         index: 37
@@ -3725,7 +3726,7 @@ VisualEffectResource:
       temporaryBuffers: []
       values:
       - nameId: deltaTime_a
-        index: 41
+        index: 30
       params: []
       processor: {fileID: 0}
       shaderSourceIndex: 3
@@ -3736,9 +3737,9 @@ VisualEffectResource:
       temporaryBuffers: []
       values:
       - nameId: Size_a
-        index: 28
+        index: 41
       - nameId: uniform_c
-        index: 20
+        index: 19
       params:
       - nameId: sortPriority
         index: 0
